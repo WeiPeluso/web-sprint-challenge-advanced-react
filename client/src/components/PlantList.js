@@ -14,22 +14,30 @@ export default class PlantList extends Component {
     super();
     
     this.state={
-      plants:[]
+      dataPlants:[],
+      plants:[],
     }
    }
 
    componentDidMount(){
-     
     axios.get("http://localhost:3333/plants")
     .then((response)=>{
-      this.setState({
-        plants:response.data.plantsData
-      })
+        this.setState({
+          plants:response.data.plantsData,
+          dataPlants:response.data.plantsData
+        })
     })
     .catch((err)=>{
       console.log(err)
     })
-    
+   }
+   componentDidUpdate(prevProps,preState){
+     if(this.props.searchInput && prevProps.searchInput!=this.props.searchInput){ 
+      const newPlants= this.state.dataPlants.filter((plant)=>plant.name.toLowerCase().includes(this.props.searchInput.toLowerCase()))
+      this.setState({
+        plants: newPlants
+   })
+    }
 
    }
   render() {

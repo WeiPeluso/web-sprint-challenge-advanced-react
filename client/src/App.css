@@ -251,3 +251,10 @@ pre {
   color: #0e101c;
   border-bottom: 2px solid !important;
 }
+
+
+.searchInput{
+  width:40%;
+  margin:auto;
+  margin-top:10px;
+}
