@@ -10,7 +10,6 @@ import "./App.css";
 function App() {
   // array of plants that have been added to the cart
   const [cart, setCart] = useState([]);
-  const [userInput, setUserInput]=useState("");
 
   // add a plant to the cart
   const addToCart = (plant) => {
@@ -22,11 +21,7 @@ function App() {
     setCart(cart.filter((p) => p.id !== plant.id));
   };
 
-  //handle input
- const searchInputChange=(e)=>{
-    setUserInput(e.target.value)
-    //console.log(userInput)
-  }
+
 
   return (
     <div>
@@ -51,14 +46,11 @@ function App() {
             </li>
           </ul>
         </nav>
-        <input className='searchInput' name="search" type="text" 
-        placeholder="type plant name"
-        onChange={searchInputChange}
-        />
+    
         <Route
           exact
           path="/"
-          render={() => <PlantList searchInput={userInput} addToCart={addToCart} />}
+          render={() => <PlantList addToCart={addToCart} />}
         />
         <Route
           path="/cart"

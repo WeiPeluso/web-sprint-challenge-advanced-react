@@ -16,8 +16,17 @@ export default class PlantList extends Component {
     this.state={
       dataPlants:[],
       plants:[],
+      userInput:""
     }
    }
+
+     //handle input
+  searchInputChange=(e)=>{
+   this.setState({
+     userInput:e.target.value
+   })
+  //console.log(userInput)
+}
 
    componentDidMount(){
     axios.get("http://localhost:3333/plants")
@@ -31,9 +40,9 @@ export default class PlantList extends Component {
       console.log(err)
     })
    }
-   componentDidUpdate(prevProps,preState){
-     if(this.props.searchInput && prevProps.searchInput!=this.props.searchInput){ 
-      const newPlants= this.state.dataPlants.filter((plant)=>plant.name.toLowerCase().includes(this.props.searchInput.toLowerCase()))
+   componentDidUpdate(prevProps,prevState){
+     if(this.state.userInput && prevState.userInput!=this.state.userInput){ 
+      const newPlants= this.state.dataPlants.filter((plant)=>plant.name.toLowerCase().includes(this.state.userInput.toLowerCase()))
       this.setState({
         plants: newPlants
    })
@@ -41,7 +50,17 @@ export default class PlantList extends Component {
 
    }
   render() {
+    const mystyle = {
+      width: "40%", 
+      margin: "auto ", 
+      marginTop:"10px"
+    };
     return (
+      <>
+    <input style={mystyle} className='searchInput' name="search" type="text" 
+      placeholder="type plant name"
+      onChange={this.searchInputChange}
+      />
       <main className="plant-list">
         {this.state?.plants?.map((plant) => (
           <div className="plant-card" key={plant.id}>
@@ -65,6 +84,7 @@ export default class PlantList extends Component {
           </div>
         ))}
       </main>
+      </>
     );
   }
 }
