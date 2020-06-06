@@ -21,6 +21,8 @@ function App() {
     setCart(cart.filter((p) => p.id !== plant.id));
   };
 
+
+
   return (
     <div>
       <Router>
@@ -44,6 +46,7 @@ function App() {
             </li>
           </ul>
         </nav>
+    
         <Route
           exact
           path="/"

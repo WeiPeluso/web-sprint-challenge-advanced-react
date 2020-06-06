@@ -30,13 +30,39 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain how to build stateful class components.
 
+Declare your class component by extending the React.Component parent class. class FooComponent extends React.Component {}. Use the constructor function to set up some state. because we’re calling extends, we also need to call super(); otherwise we won’t have access the this We need to render some sort of UI to the DOM. We do this by calling the life-cycle method render.
+
 2. Describe the different phases of the component lifecycle.
+
+   Mounting: mounting is the birth stage. This is the phase when the component is being built out from the ground up. A few things are happening here: Whatever initial data you want access to will be defined on the constructor of this phase.
+
+   Updating: updating is the life stage. In the Growth/Updating phase you’re updating compnent data.
+
+   Unmouting: unmouting is the death stage. The unmounting phase includes removing the component from the screen.
 
 3. Demonstrate an understanding of class component lifecycle methods.
 
+Mounting Phase:
+1, constructor function is called and state data is initialized
+2, render is then invoked and our JSX elements are transformed into DOM elemtns
+3, After render is called, componentDidMount will be invoked.
+
+updating Phase:
+1, Any new props received from a parent will trigger updates to the child
+2,this.setState calls a render by defualt
+3 componentDidUpdate() will be invoked
+
+unmounting Phase:
+1, remove the component from the screen.
+2, compopnentWillUnmount() will be invoked.
+
 4. Define stateful logic.
 
+Stateful logic is logic that is built into a component. It can be a function that handles a click event or maybe a function that sets toggle state, or even a function that formats data before it gets displayed. Usually, this kind of logic deals with state in the component. Thus the moniker “stateful logic.”
+
 5. Describe how to test a React component with React Testing Library.
+
+The framework we use for testing is: arrange, act, assert. These are three steps that we can take to build good tests. First, we “arrange” our test by setting up our code such that it can be tested. Then, we “act” - calling a method or function that returns a result of interest to our test. Finally, with that return we “assert” if our expected return matched the actual return.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
